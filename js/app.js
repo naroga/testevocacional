@@ -41,6 +41,7 @@ var App = {
     render: function () {
 
         var question = this.getQuestion(this.currentIndex);
+
         var container = $("div#body_content");
         container.html('');
 
@@ -84,35 +85,36 @@ var App = {
 
         var questions = new Array();
 
-        questions = [new Question(
-            "Teste questão 1",
-            [
-                new Alternative(
-                    "Alternativa1",
-                    1,
-                    1,
-                    1
-                ),
-                new Alternative(
-                    "Alternativa2",
-                    1,
-                    1,
-                    1
-                ),
-                new Alternative(
-                    "Alternativa3",
-                    1,
-                    1,
-                    1
-                ),
-                new Alternative(
-                    "Alternativa4",
-                    1,
-                    1,
-                    1
-                )
-            ]
-        ),
+        questions = [
+            new Question(
+                "Teste questão 1",
+                [
+                    new Alternative(
+                        "Alternativa1",
+                        1,
+                        1,
+                        1
+                    ),
+                    new Alternative(
+                        "Alternativa2",
+                        1,
+                        1,
+                        1
+                    ),
+                    new Alternative(
+                        "Alternativa3",
+                        1,
+                        1,
+                        1
+                    ),
+                    new Alternative(
+                        "Alternativa4",
+                        1,
+                        1,
+                        1
+                    )
+                ]
+            ),
             new Question(
                 "Teste Questão 2",
                 [
