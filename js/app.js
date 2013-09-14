@@ -1,5 +1,5 @@
 //Estrutura de alternativas
-var Alternative = function (text, science, biological, humanities) {
+var Alternative = function (text, s, b, h) {
 
     var answer = "";
     var science = 0;
@@ -7,9 +7,9 @@ var Alternative = function (text, science, biological, humanities) {
     var humanities = 0;
 
     this.answer = text;
-    this.science = science;
-    this.biological = biological;
-    this.humanities = humanities;
+    this.science = s;
+    this.biological = b;
+    this.humanities = h;
 
 }
 
@@ -47,7 +47,7 @@ var App = {
 
         container.append("<h3 style='text-align: center'>" + question.question + "</h3>");
 
-        for (var i = 0; i < 4; i++) {
+        for (var i = 0; i < question.alternatives.length; i++) {
 
             container.append(
                 "<a id=\"alternative_" + i + "\" data-role=\"button\" data-theme=\"b\" href=\"javascript:void(0)\" data-icon=\"forward\" data-iconpos=\"right\" data-index=\"" + i + "\">" +
@@ -57,7 +57,7 @@ var App = {
 
             $("a#alternative_" + i).on("click", function () {
                 question.answer = $(this).attr("data-index");
-                this.next();
+                App.next();
             });
 
             $("div#body_content").trigger('create');
@@ -87,7 +87,50 @@ var App = {
 
     result: function () {
 
-        alert("Resultado!");
+        var science = 0;
+        var biological = 0;
+        var humanities = 0;
+
+        for (var i = 0; i < this.questions.length; i++) {
+
+            science += this.questions[i].alternatives[this.questions[i].answer].science;
+            biological += this.questions[i].alternatives[this.questions[i].answer].biological;
+            humanities += this.questions[i].alternatives[this.questions[i].answer].humanities;
+
+        }
+
+        var container = $("div#body_content");
+        container.html('');
+
+        container.append("<h3 style='text-align: center'>Resultado</h3>");
+        container.append("<div id='result_content' style='text-align: center;'>");
+        container.append("<div id=\"chart1\" style=\"width:300px; height:300px;\"></div><pre class=\"code brush:js\"></pre>");
+        container.append("</div>");
+
+        $.jqplot.config.enablePlugins = true;
+        var s1 = [science, biological, humanities];
+        var ticks = ['Exatas', 'Biológicas', 'Humanas'];
+
+        plot1 = $.jqplot('chart1', [s1], {
+            // Only animate if we're not using excanvas (not in IE 7 or IE 8)..
+            animate: !$.jqplot.use_excanvas,
+            seriesDefaults:{
+                renderer:$.jqplot.BarRenderer,
+                pointLabels: { show: false },
+                tickOptions: {
+                    showTicks: false,        // wether or not to show the tick labels,
+                    showTickMarks: false     // wether or not to show the tick marks
+                }
+            },
+            axes: {
+                xaxis: {
+                    renderer: $.jqplot.CategoryAxisRenderer,
+                    ticks: ticks
+                }
+            },
+
+            highlighter: { show: false }
+        });
 
     },
 
@@ -97,60 +140,48 @@ var App = {
 
         questions = [
             new Question(
-                "Teste questão 1",
+                "Quais são as qualidades que você mais admira em uma pessoa?",
                 [
                     new Alternative(
-                        "Alternativa1",
-                        1,
-                        1,
+                        "Inteligência, raciocínio",
+                        3,
+                        2,
                         1
                     ),
                     new Alternative(
-                        "Alternativa2",
+                        "Carisma, capacidade de lidar com pessoas",
                         1,
-                        1,
-                        1
+                        3,
+                        2
                     ),
                     new Alternative(
-                        "Alternativa3",
+                        "Sabedoria, experiência de vida",
+                        2,
                         1,
-                        1,
-                        1
-                    ),
-                    new Alternative(
-                        "Alternativa4",
-                        1,
-                        1,
-                        1
+                        3
                     )
                 ]
             ),
             new Question(
-                "Teste Questão 2",
+                "Quais são as qualidades que você mais admira em uma pessoa?",
                 [
                     new Alternative(
-                        "Alternativa1",
-                        1,
-                        1,
+                        "Inteligência, raciocínio",
+                        3,
+                        2,
                         1
                     ),
                     new Alternative(
-                        "Alternativa2",
+                        "Carisma, capacidade de lidar com pessoas",
                         1,
-                        1,
-                        1
+                        3,
+                        2
                     ),
                     new Alternative(
-                        "Alternativa3",
+                        "Sabedoria, experiência de vida",
+                        2,
                         1,
-                        1,
-                        1
-                    ),
-                    new Alternative(
-                        "Alternativa4",
-                        1,
-                        1,
-                        1
+                        3
                     )
                 ]
             )
