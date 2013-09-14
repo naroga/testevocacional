@@ -158,6 +158,7 @@ var App = {
 
 $(document).on("pageinit", "#page1", function(event) {
 
-    App.init();
+    //App.init();
+
 
 });
