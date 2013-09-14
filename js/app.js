@@ -50,7 +50,7 @@ var App = {
         for (var i = 0; i < 4; i++) {
 
             container.append(
-                "<a id=\"alternative_" + i + "\" data-role=\"button\" data-theme=\"b\" href=\"home.html\" data-icon=\"forward\" data-iconpos=\"right\" data-index=\"" + i + "\">" +
+                "<a id=\"alternative_" + i + "\" data-role=\"button\" data-theme=\"b\" href=\"#home\" data-icon=\"forward\" data-iconpos=\"right\" data-index=\"" + i + "\">" +
                     question.alternatives[i].answer +
                     "</a>"
             );
@@ -71,6 +71,15 @@ var App = {
             this.render();
         } else {
             this.result();
+        }
+
+    },
+
+    previous: function() {
+
+        if (this.currentIndex > 0) {
+            this.currentIndex--;
+            this.render();
         }
 
     },
@@ -159,5 +168,9 @@ var App = {
 $(document).on("pageinit", "#home", function(event) {
 
     App.init();
+
+    $("a#back_button").on("click", function() {
+        App.previous();
+    });
 
 });
