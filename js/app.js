@@ -57,7 +57,7 @@ var App = {
 
             $("a#alternative_" + i).on("click", function () {
                 question.answer = $(this).attr("data-index");
-                App.next();
+                this.next();
             });
 
             $("div#body_content").trigger('create');
@@ -67,7 +67,8 @@ var App = {
 
     next: function () {
 
-        if (this.questions.length > ++this.currentIndex) {
+        if (this.questions.length > this.currentIndex + 1) {
+            ++this.currentIndex
             this.render();
         } else {
             this.result();
