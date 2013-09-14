@@ -156,9 +156,8 @@ var App = {
 
 }
 
-$(document).on("pageinit", function () {
+$(document).on("pageinit", "#page1", function(event) {
 
-    alert("Teste");
     App.init();
 
 });
