@@ -159,8 +159,13 @@ var App = {
                 "</h5>");
         } else
         if (max == biological) {
-            container.append("<h5 color='#555555' style='text-align: center'>Você parece ter bastante aptidão" +
-                "para as <b>Ciências Biológicas e da Natureza.");
+            container.append("<h5 color='#555555' style='text-align: center'>Você parece ter bastante aptidão " +
+                "para as <b>Ciências biológicas e da natureza. " +
+                "Confira alguns cursos que a <a href=\"http://www.facig.com.br/\" target=\"_blank\" data-transition=\"turn\">FACIG</a> " +
+                "oferece nesta área: </h5>");
+            container.append("<h5 style='text-align: center'>" +
+                "Medicina<br />" +
+                "</h5>");
         }
 
         container.append("<h5 style='text-align: center'><a href=\"http://www.facig.com.br/\" target=\"_blank\" data-transition=\"turn\">Clique aqui para acessar o site da FACIG e obter mais informações sobre cursos na sua área.</a></h5>");
