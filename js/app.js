@@ -50,7 +50,7 @@ var App = {
         for (var i = 0; i < 4; i++) {
 
             container.append(
-                "<a id=\"alternative_" + i + "\" data-role=\"button\" data-theme=\"b\" href=\"#home\" data-icon=\"forward\" data-iconpos=\"right\" data-index=\"" + i + "\">" +
+                "<a id=\"alternative_" + i + "\" data-role=\"button\" data-theme=\"b\" href=\"javascript:void(0)\" data-icon=\"forward\" data-iconpos=\"right\" data-index=\"" + i + "\">" +
                     question.alternatives[i].answer +
                     "</a>"
             );
